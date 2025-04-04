@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { useState } from "react";
+
 
 
 interface IStoryCard {
@@ -11,7 +11,7 @@ interface IStoryCard {
 }
 
 function Stories() {
-  const [hovered,setHovered]=useState<number>(1)
+  
     const stories: IStoryCard[] = [
         {
             id: 1,
