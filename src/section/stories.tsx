@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 
+
 interface IStoryCard {
     id: number;
     title: string;
@@ -10,7 +11,7 @@ interface IStoryCard {
 }
 
 function Stories() {
-    const [hoveredId, setHoveredId] = useState<number>(1);
+  const [hovered,setHovered]=useState<number>(1)
     const stories: IStoryCard[] = [
         {
             id: 1,
@@ -51,14 +52,12 @@ function Stories() {
                     </div>
 
                     {/* Right content - Story cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[50px]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-[50px]">
                         {stories.map((story) => (
                             <StoryCard
-                                key={story.id}
+                               
                                 story={story}
-                                isHovered={hoveredId === story.id}
-                                onHover={() => setHoveredId(story.id)}
-                                onLeave={() => setHoveredId(1)}
+                               
                             />
                         ))}
                     </div>
@@ -71,25 +70,15 @@ function Stories() {
 export default Stories;
 
 /* Story Card Component */
-const StoryCard = ({
-    story,
-    isHovered,
-    onHover,
-    onLeave,
-}: {
-    story: { id: number; title: string; description: string; image: string };
-    isHovered: boolean;
-    onHover: () => void;
-    onLeave: () => void;
-}) => {
+const StoryCard = (
+    {story}:{story:IStoryCard}
+   ) => {
     return (
-        <div onMouseEnter={onHover}
-            onMouseLeave={onLeave}
-            className={`relative flex flex-col transition-all duration-500 ease-in-out ${isHovered ? "w-[313px] h-[521px]" : "w-[280px] h-[441.5px]"
-                }`}
+        <div 
+            className={`relative flex flex-col transition-all duration-500 ease-in-out mt-5 w-full max-w-[313px] `}
 
         >
-            <div className="w-full aspect-square relative">
+            <div className="w-full aspect-[1.11/1] relative">
                 <img
                     className="w-full h-full object-cover rounded-none rounded-t-[25px] "
                     alt={story.title}
